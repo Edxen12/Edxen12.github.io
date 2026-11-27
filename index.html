@@ -13,136 +13,191 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#FCFCF8; --grid:#DDE7F3; --ink:#1E3A6E; --pea:#4E7D32; --pod:#E0B83A; --graphite:#2A2E33; --soft:#5E6672;
+  --paper:#FCFCF8; --grid:#DDE7F3; --ink:#1E3A6E; --pea:#4E7D32; --pod:#E0B83A; --graphite:#2A2E33; --soft:#5E6672; --tape:rgba(224,184,58,.55); --margin:#E9A3A3;
   --display:"Bricolage Grotesque", system-ui, sans-serif;
   --body:"Literata", Georgia, serif;
   --hand:"Caveat", cursive;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  background-color:var(--paper);
-  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
-  background-size:28px 28px;
-  color:var(--graphite);font-family:var(--body);font-size:1.0625rem;line-height:1.7;
-}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px;color:var(--graphite);font-family:var(--body);font-size:1.0625rem;line-height:1.7}
 a{color:var(--ink)}
 a:focus-visible,button:focus-visible{outline:3px solid var(--pod);outline-offset:3px;border-radius:4px}
 img{max-width:100%;display:block}
-.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
-/* margin line like a notebook */
-.sheet{position:relative;border-left:2px solid #E9A3A3;margin-left:max(12px,calc((100vw - 1080px)/2 - 20px));padding-left:0}
-@media (max-width:760px){.sheet{border-left:0;margin-left:0}}
-
+.wrap{max-width:1140px;margin:0 auto;padding:0 28px}
 h1,h2,h3{font-family:var(--display);color:var(--ink);line-height:1.05;letter-spacing:-.015em}
-h2{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;margin-bottom:.6rem}
-h3{font-size:1.3rem;font-weight:700;margin-bottom:.3rem}
+h2{font-size:clamp(2rem,4.2vw,3rem);font-weight:800;margin-bottom:.6rem}
+h3{font-size:1.25rem;font-weight:700;margin-bottom:.3rem}
 .note{font-family:var(--hand);color:var(--pea);font-size:1.45rem;line-height:1.2}
-section{padding:88px 0}
-.intro{max-width:62ch;color:var(--soft);margin-bottom:2.2rem}
+section{padding:84px 0;position:relative}
+.intro{max-width:62ch;color:var(--soft);margin-bottom:2.4rem}
+.taped{position:relative;background:#fff;padding:9px;box-shadow:0 1px 0 #cfd8e6,0 16px 34px -22px rgba(30,58,110,.55)}
+.taped::before{content:"";position:absolute;top:-11px;left:50%;width:92px;height:24px;margin-left:-46px;background:var(--tape);transform:rotate(-3deg);mix-blend-mode:multiply}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:10;background:rgba(252,252,248,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--grid)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px;gap:20px}
+nav b{font-family:var(--display);font-weight:800;color:var(--ink);font-size:1.05rem;white-space:nowrap}
+nav ul{display:flex;gap:22px;list-style:none;font-family:var(--display);font-weight:500;font-size:.95rem;overflow-x:auto;scrollbar-width:none}
+nav a{text-decoration:none;white-space:nowrap}
+nav a:hover{color:var(--pea)}
+@media (max-width:760px){nav b{display:none}nav ul{gap:18px}}
 
 /* HERO */
-.hero{padding:96px 0 40px}
-.hero .note{transform:rotate(-2deg);display:inline-block;margin-bottom:18px}
-.hero h1{font-size:clamp(3.2rem,10vw,7.4rem);font-weight:800;letter-spacing:-.035em;line-height:.92}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding:64px 0 30px}
+.hero .note{transform:rotate(-2deg);display:inline-block;margin-bottom:16px}
+.hero h1{font-size:clamp(3.2rem,8.6vw,6.8rem);font-weight:800;letter-spacing:-.035em;line-height:.92}
 .hero h1 span{display:block;color:var(--graphite);font-weight:500}
-.hero p.lede{font-size:clamp(1.15rem,2.2vw,1.4rem);max-width:34ch;margin:28px 0 30px;color:var(--graphite)}
-.facts{display:flex;flex-wrap:wrap;gap:10px 28px;font-family:var(--display);font-weight:500;color:var(--ink);margin-bottom:34px}
-.facts b{font-weight:800}
-.btn{display:inline-block;font-family:var(--display);font-weight:700;background:var(--ink);color:#fff;text-decoration:none;padding:14px 22px;border-radius:999px}
-.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink);margin-left:8px}
-.btn:hover{background:var(--pea)}
-.btn.ghost:hover{background:transparent;color:var(--pea);box-shadow:inset 0 0 0 2px var(--pea)}
+.lede{font-size:clamp(1.15rem,2vw,1.35rem);max-width:36ch;margin:26px 0 28px}
+.btn{display:inline-block;font-family:var(--display);font-weight:700;background:var(--ink);color:#fff;text-decoration:none;padding:14px 22px;border-radius:999px;margin:0 8px 8px 0}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn:hover{background:var(--pea)}.btn.ghost:hover{background:transparent;color:var(--pea);box-shadow:inset 0 0 0 2px var(--pea)}
+.collage{position:relative;height:560px}
+.collage .taped{position:absolute}
+.collage .p1{width:58%;left:20%;top:0;transform:rotate(2deg);z-index:2}
+.collage .p2{width:52%;left:0;bottom:30px;transform:rotate(-6deg);z-index:3}
+.collage .p3{width:46%;right:0;bottom:0;transform:rotate(5deg);z-index:1}
+.collage .p1 img{aspect-ratio:3/4;object-fit:cover;object-position:top}
+.collage .p2 img,.collage .p3 img{aspect-ratio:4/3;object-fit:cover}
+.collage .hn{position:absolute;font-family:var(--hand);color:var(--ink);font-size:1.35rem;line-height:1.1;z-index:4}
+.collage .h1{left:-6px;top:236px;transform:rotate(-7deg);max-width:9ch}
+.collage .h2{right:-4px;top:300px;transform:rotate(6deg);max-width:10ch;text-align:right}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.collage{height:430px;max-width:440px;width:100%;margin:10px auto 0}.collage .hn{display:none}}
 
-/* GENERATIONS — the one bold element */
-.gens{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:10px}
+/* STATS strip */
+.counts{display:grid;grid-template-columns:repeat(6,1fr);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);margin-top:40px}
+.counts div{padding:18px 14px;border-left:1px dashed #b9c6d8}
+.counts div:first-child{border-left:0}
+.counts b{display:block;font-family:var(--display);font-weight:800;color:var(--ink);font-size:2.1rem;line-height:1}
+.counts span{font-size:.85rem;color:var(--soft);line-height:1.35;display:block;margin-top:6px}
+@media (max-width:900px){.counts{grid-template-columns:repeat(3,1fr)}.counts div:nth-child(4){border-left:0}.counts div:nth-child(n+4){border-top:1px dashed #b9c6d8}}
+@media (max-width:520px){.counts{grid-template-columns:repeat(2,1fr)}.counts div{border-left:0!important;border-top:1px dashed #b9c6d8}.counts div:nth-child(-n+2){border-top:0}}
+
+/* GENERATIONS */
+.gens{position:relative;display:grid;grid-template-columns:repeat(4,1fr)}
 .gens::before{content:"";position:absolute;top:44px;left:12.5%;right:12.5%;height:3px;background:repeating-linear-gradient(90deg,var(--pea) 0 10px,transparent 10px 18px)}
-.gen{position:relative;text-align:center;padding:0 10px}
-.pea{width:88px;height:88px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--graphite);position:relative;
-  background:radial-gradient(circle at 34% 30%,rgba(255,255,255,.75) 0 12%,transparent 13%),var(--c);box-shadow:inset -8px -10px 0 rgba(0,0,0,.08)}
-.gen:nth-child(odd) .pea{--c:var(--pod)}
-.gen:nth-child(even) .pea{--c:#8DB15E}
+.gen{position:relative;text-align:center;padding:0 12px}
+.pea{width:88px;height:88px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--graphite);background:radial-gradient(circle at 34% 30%,rgba(255,255,255,.75) 0 12%,transparent 13%),var(--c);box-shadow:inset -8px -10px 0 rgba(0,0,0,.08)}
+.gen:nth-child(odd) .pea{--c:var(--pod)}.gen:nth-child(even) .pea{--c:#8DB15E}
 .gen .gl{font-family:var(--hand);font-size:1.25rem;color:var(--soft);display:block;margin-top:-12px;margin-bottom:6px}
 .gen h3{font-size:1.08rem}
 .gen p{font-size:.92rem;color:var(--soft);line-height:1.5}
-@media (max-width:760px){
-  .gens{grid-template-columns:1fr;gap:26px}
-  .gens::before{top:10px;bottom:10px;left:43px;right:auto;width:3px;height:auto;background:repeating-linear-gradient(180deg,var(--pea) 0 10px,transparent 10px 18px)}
-  .gen{display:grid;grid-template-columns:88px 1fr;gap:18px;text-align:left;padding:0;align-items:start}
-  .pea{margin:0}
-  .gen .gl{margin-top:0}
-}
-@media (prefers-reduced-motion:no-preference){
-  .gen .pea{animation:sprout .5s cubic-bezier(.3,1.6,.5,1) both}
-  .gen:nth-child(2) .pea{animation-delay:.15s}.gen:nth-child(3) .pea{animation-delay:.3s}
-  .gen:nth-child(4) .pea{animation-delay:.45s}
-  @keyframes sprout{from{transform:scale(0)}to{transform:scale(1)}}
-}
+@media (max-width:760px){.gens{grid-template-columns:1fr;gap:26px}.gens::before{top:10px;bottom:10px;left:43px;right:auto;width:3px;height:auto;background:repeating-linear-gradient(180deg,var(--pea) 0 10px,transparent 10px 18px)}.gen{display:grid;grid-template-columns:88px 1fr;gap:18px;text-align:left;padding:0}.pea{margin:0}.gen .gl{margin-top:0}}
+@media (prefers-reduced-motion:no-preference){.gen .pea{animation:sprout .5s cubic-bezier(.3,1.6,.5,1) both}.gen:nth-child(2) .pea{animation-delay:.15s}.gen:nth-child(3) .pea{animation-delay:.3s}.gen:nth-child(4) .pea{animation-delay:.45s}@keyframes sprout{from{transform:scale(0)}to{transform:scale(1)}}}
 
-/* REQUIREMENTS */
-.req{list-style:none;max-width:780px}
-.req li{display:grid;grid-template-columns:40px 1fr;gap:14px;padding:18px 0;border-bottom:1px dashed #b9c6d8}
-.req .ck{width:30px;height:30px;border-radius:50%;background:var(--pea);color:#fff;display:grid;place-items:center;font-weight:700;font-family:var(--display);margin-top:2px}
-.req strong{font-family:var(--display);color:var(--ink);font-size:1.08rem;display:block}
-.req span{color:var(--soft);font-size:.98rem}
+/* LEDGER: everything */
+.ledger{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 40px}
+.ledger h3{font-size:1.15rem;padding-bottom:8px;border-bottom:2px solid var(--ink);margin-bottom:6px;display:flex;justify-content:space-between;align-items:baseline}
+.ledger h3 small{font-family:var(--hand);font-weight:500;color:var(--pea);font-size:1.25rem}
+.ledger ul{list-style:none}
+.ledger li{padding:7px 0 7px 22px;border-bottom:1px dashed #c6d1e0;position:relative;font-size:.95rem;line-height:1.45}
+.ledger li::before{content:"";position:absolute;left:3px;top:14px;width:9px;height:9px;border-radius:50%;background:var(--pod)}
+.ledger li:nth-child(even)::before{background:#8DB15E}
+.ledger li b{font-family:var(--display);font-weight:700;color:var(--ink)}
+.ledger li i{font-style:normal;color:var(--soft);font-size:.85rem}
+@media (max-width:900px){.ledger{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.ledger{grid-template-columns:1fr}}
 
-/* PROJECTS */
-.feature{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center;margin-bottom:64px}
-.feature:nth-of-type(even){grid-template-columns:1fr 1.25fr}
-.feature:nth-of-type(even) .shot{order:2}
-.shot{background:#fff;padding:10px;border-radius:10px;box-shadow:0 1px 0 #cfd8e6,0 18px 40px -24px rgba(30,58,110,.45)}
-.shot img{border-radius:5px;aspect-ratio:16/10;object-fit:cover;object-position:top;width:100%}
-.feature .note{margin-bottom:6px}
-.feature h3{font-size:1.7rem}
+/* PROJECT features */
+.browser{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 0 #cfd8e6,0 22px 44px -26px rgba(30,58,110,.55);border:1px solid #d9e0ea}
+.browser .bar{display:flex;align-items:center;gap:6px;padding:8px 12px;background:#eef2f7;border-bottom:1px solid #d9e0ea}
+.browser .bar i{width:10px;height:10px;border-radius:50%;background:#cfd6e0}
+.browser .bar span{margin-left:10px;flex:1;background:#fff;border-radius:6px;padding:2px 10px;font-family:var(--display);font-size:.78rem;color:var(--soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.browser img{aspect-ratio:16/10;object-fit:cover;object-position:top;width:100%}
+.feature{display:grid;grid-template-columns:1.3fr 1fr;gap:44px;align-items:center;margin-bottom:64px}
+.feature.flip{grid-template-columns:1fr 1.3fr}.feature.flip .browser{order:2}
+.feature h3{font-size:1.8rem}
 .feature p{max-width:46ch}
-.feature .who{margin-top:12px;font-size:.95rem;color:var(--ink)}
-.feature a.open{display:inline-block;margin-top:14px;font-family:var(--display);font-weight:700}
-@media (max-width:760px){.feature,.feature:nth-of-type(even){grid-template-columns:1fr;gap:18px}.feature:nth-of-type(even) .shot{order:0}}
+.feature .open{display:inline-block;margin-top:14px;font-family:var(--display);font-weight:700}
+@media (max-width:760px){.feature,.feature.flip{grid-template-columns:1fr;gap:18px}.feature.flip .browser{order:0}}
 
-.more{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0 40px;margin-top:10px}
+/* classes gallery */
+.classes{display:grid;grid-template-columns:repeat(6,1fr);gap:30px 26px}
+.classes figure{grid-column:span 2}
+.classes figure.wide{grid-column:span 3}
+.classes .taped img{aspect-ratio:16/10;object-fit:cover;object-position:top;width:100%}
+.classes figure:nth-child(odd) .taped{transform:rotate(-1deg)}.classes figure:nth-child(even) .taped{transform:rotate(1.2deg)}
+.classes figcaption{margin-top:14px}
+.classes figcaption b{font-family:var(--display);color:var(--ink);font-size:1.08rem;display:block}
+.classes figcaption span{font-size:.92rem;color:var(--soft);line-height:1.5;display:block}
+.classes figcaption em{font-style:normal;font-family:var(--hand);color:var(--pea);font-size:1.25rem}
+@media (max-width:900px){.classes{grid-template-columns:1fr 1fr}.classes figure,.classes figure.wide{grid-column:span 1}}
+@media (max-width:560px){.classes{grid-template-columns:1fr}}
+
+.more{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:0 40px}
 .more div{padding:18px 0;border-top:2px solid var(--ink)}
 .more h3{font-size:1.12rem}
 .more p{font-size:.95rem;color:var(--soft);line-height:1.55}
 .more em{font-style:normal;font-family:var(--hand);font-size:1.2rem;color:var(--pea)}
 
-.clients{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px}
+.clients{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 .clients a{text-decoration:none;color:var(--graphite)}
-.clients img{border-radius:6px;aspect-ratio:16/10;object-fit:cover;object-position:top;width:100%;box-shadow:0 1px 0 #cfd8e6,0 12px 30px -22px rgba(30,58,110,.5)}
 .clients b{display:block;font-family:var(--display);color:var(--ink);margin-top:10px}
 .clients small{color:var(--soft);font-size:.88rem}
 .clients a:hover b{color:var(--pea)}
 @media (max-width:760px){.clients{grid-template-columns:1fr 1fr}}
+.repos{margin-top:40px;display:flex;flex-wrap:wrap;gap:8px}
+.repos span{font-family:var(--display);font-weight:500;font-size:.88rem;color:var(--ink);background:#fff;border:1px solid #cdd7e5;border-radius:999px;padding:4px 12px}
+
+/* REQUIREMENTS */
+.req{list-style:none;max-width:800px}
+.req li{display:grid;grid-template-columns:40px 1fr;gap:14px;padding:18px 0;border-bottom:1px dashed #b9c6d8}
+.req .ck{width:30px;height:30px;border-radius:50%;background:var(--pea);color:#fff;display:grid;place-items:center;font-weight:700;font-family:var(--display);margin-top:2px}
+.req strong{font-family:var(--display);color:var(--ink);font-size:1.08rem;display:block}
+.req span{color:var(--soft);font-size:.98rem}
 
 /* EVIDENCE */
-.evid{columns:3 280px;column-gap:20px}
-.evid a{display:block;break-inside:avoid;margin-bottom:20px;text-decoration:none;background:#fff;padding:8px 8px 10px;border-radius:6px;box-shadow:0 1px 0 #cfd8e6}
-.evid img{border-radius:3px}
-.evid span{display:block;font-family:var(--display);font-weight:500;color:var(--ink);font-size:.95rem;margin-top:8px;line-height:1.3}
-.evid small{display:block;color:var(--soft);font-family:var(--body);font-size:.82rem;font-weight:400}
+.evid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px 26px;padding-top:12px}
+.evid a{display:block;text-decoration:none}
+.evid .taped img{aspect-ratio:4/3;object-fit:cover}
+.evid a:nth-child(3n+1) .taped{transform:rotate(-2deg)}.evid a:nth-child(3n+2) .taped{transform:rotate(1.5deg)}.evid a:nth-child(3n) .taped{transform:rotate(-.6deg)}
+.evid a:hover .taped{transform:rotate(0) scale(1.02)}
+.evid .taped{transition:transform .2s}
+.evid b{display:block;font-family:var(--display);color:var(--ink);font-size:.98rem;margin-top:12px;line-height:1.3}
+.evid small{color:var(--soft);font-size:.84rem}
+@media (max-width:900px){.evid{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){.evid .taped{transition:none}}
 
 /* CLOSE */
-.close{padding-bottom:120px}
-.close blockquote{font-family:var(--display);font-weight:700;color:var(--ink);font-size:clamp(1.6rem,3.6vw,2.5rem);line-height:1.15;max-width:24ch;letter-spacing:-.02em}
-.close p{max-width:60ch;margin-top:22px}
-.close .note{margin-top:28px;display:block}
-footer{padding:30px 0 50px;color:var(--soft);font-size:.9rem}
+.close{padding-bottom:110px}
+.close blockquote{font-family:var(--display);font-weight:800;color:var(--ink);font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.1;max-width:22ch;letter-spacing:-.02em}
+.close p{max-width:62ch;margin-top:22px}
+.sig{font-family:var(--hand);color:var(--ink);font-size:3rem;margin-top:24px;transform:rotate(-3deg);display:inline-block}
+footer{padding:26px 0 46px;color:var(--soft);font-size:.9rem;border-top:1px solid var(--grid)}
 </style>
 </head>
 <body>
-<div class="sheet">
+
+<nav><div class="wrap"><b>Edmar Quirós</b><ul>
+  <li><a href="#todo">Todo lo que he hecho</a></li><li><a href="#proyectos">Proyectos</a></li><li><a href="#clases">En mis clases</a></li><li><a href="#negocios">Negocios</a></li><li><a href="#requisitos">Requisitos</a></li><li><a href="#evidencias">Certificados</a></li>
+</ul></div></nav>
+
 <div class="wrap">
 
 <header class="hero">
-  <span class="note">Postulación a la Medalla de la Ciencia y la Tecnología Fray Gregorio Mendel</span>
-  <h1>Edmar<span>Quirós Torrero</span></h1>
-  <p class="lede">Estudiante del Colegio San Agustín de Penonomé. Construyo tecnología que usan mis profesores, mi colegio y negocios de Panamá.</p>
-  <div class="facts">
-    <span><b>5 años</b> en ciencia y tecnología</span>
-    <span><b>Final nacional</b> RoboCupJunior</span>
-    <span><b>30+</b> proyectos de software</span>
+  <div>
+    <span class="note">Postulación a la Medalla de la Ciencia y la Tecnología Fray Gregorio Mendel</span>
+    <h1>Edmar<span>Quirós Torrero</span></h1>
+    <p class="lede">Graduando del Colegio San Agustín de Penonomé. Desde 8.º grado hago robótica, y hoy construyo tecnología que usan mis profesores, mi colegio y negocios de Panamá.</p>
+    <a class="btn" href="#todo">Ver todo lo que he hecho</a><a class="btn ghost" href="#evidencias">Ver certificados</a>
   </div>
-  <a class="btn" href="#proyectos">Ver proyectos funcionando</a><a class="btn ghost" href="#evidencias">Ver certificados</a>
+  <div class="collage" aria-hidden="true">
+    <div class="taped p1"><img src="img/edmar.jpg" alt=""></div>
+    <div class="taped p2"><img src="img/robocup.jpg" alt=""></div>
+    <div class="taped p3"><img src="img/medalla-oratoria.jpg" alt=""></div>
+    <span class="hn h1">final nacional de robótica, 2024</span>
+    <span class="hn h2">finalista regional, oratoria sobre IA</span>
+  </div>
 </header>
+
+<div class="counts">
+  <div><b>5</b><span>años en ciencia y tecnología</span></div>
+  <div><b>9+</b><span>competencias, ferias y programas</span></div>
+  <div><b>7</b><span>certificados y medallas</span></div>
+  <div><b>30+</b><span>proyectos de software</span></div>
+  <div><b>10+</b><span>apps y sitios publicados</span></div>
+  <div><b>6</b><span>negocios con mi tecnología</span></div>
+</div>
 
 <section id="trayectoria">
   <h2>Cinco años, cuatro generaciones</h2>
@@ -155,39 +210,98 @@ footer{padding:30px 0 50px;color:var(--soft);font-size:.9rem}
   </div>
 </section>
 
+<section id="todo">
+  <h2>Todo lo que he hecho</h2>
+  <p class="intro">Los certificados son solo una parte. Esta es la lista completa, ordenada como en un cuaderno.</p>
+  <div class="ledger">
+    <div><h3>Competencias y ciencia <small>9</small></h3><ul>
+      <li><b>RoboCupJunior Panamá</b>, final nacional <i>2024 · SENACYT</i></li>
+      <li><b>Hackathon GENTec</b>, Regional de Veraguas <i>2026 · SENACYT</i></li>
+      <li><b>Concurso Regional de Oratoria</b>, finalista, tema IA <i>2026 · MEDUCA</i></li>
+      <li><b>Reconocimiento del Canal de Panamá</b> <i>2026</i></li>
+      <li><b>Olimpiada de Ciencias Espaciales</b></li>
+      <li><b>Química en la Cocina</b></li>
+      <li><b>Feria Científica</b>, con proyectos propios</li>
+      <li><b>Otras competencias de robótica</b></li>
+      <li><b>Prototipos con Arduino</b>: sensores y pantallas</li>
+    </ul></div>
+    <div><h3>En mi colegio <small>10</small></h3><ul>
+      <li><b>Club de Robótica</b> desde 8.º grado</li>
+      <li><b>Diseñé el logo</b> del Club de Robótica</li>
+      <li><b>Equith</b>, app para la clase de mi teacher</li>
+      <li><b>Ñ-App</b> para la Prof. Sadia, Día del Idioma</li>
+      <li><b>ColSaPe+</b>, plataforma digital del colegio</li>
+      <li><b>SIRA Clara</b>, notas claras para estudiantes</li>
+      <li><b>Soporte técnico</b> a profesores: proyectores y equipos</li>
+      <li><b>Represento al colegio</b> en Oratoria</li>
+      <li><b>Banda de Música</b> y <b>equipo de voleibol</b></li>
+      <li><b>Semana del Inglés</b></li>
+    </ul></div>
+    <div><h3>Formación <small>4</small></h3><ul>
+      <li><b>Programa GENTec</b>, Programación, 8 semanas <i>2026</i></li>
+      <li><b>Matemáticas de Media</b>, Universidad de Panamá <i>2025</i></li>
+      <li><b>Admisión aprobada</b> en la Universidad Tecnológica de Panamá</li>
+      <li><b>Examen de admisión de Medicina</b>, Universidad de Panamá</li>
+    </ul>
+    <h3 style="margin-top:30px">Emprendimiento y comunidad <small>5</small></h3><ul>
+      <li><b>Fundador de TerLoop</b>, agencia de automatización e IA</li>
+      <li><b>Sitios web vendidos</b> a negocios panameños</li>
+      <li><b>Turismo</b>: sitios bilingües de destinos de Panamá</li>
+      <li><b>HOP Panamá</b>: oportunidades para jóvenes</li>
+      <li><b>Ayuda técnica</b> a vecinos y familias</li>
+    </ul></div>
+  </div>
+</section>
+
 <section id="proyectos">
   <h2>Funcionando hoy</h2>
   <p class="intro">No son maquetas. Son aplicaciones publicadas y en uso. Puedes abrirlas desde aquí.</p>
 
   <article class="feature">
-    <div class="shot"><img src="img/s-equith.jpg" alt="Pantalla de inicio de Equith" loading="lazy"></div>
+    <div class="browser"><div class="bar"><i></i><i></i><i></i><span>actually-random-roulette.vercel.app</span></div><img src="img/s-equith.jpg" alt="Equith eligiendo al siguiente estudiante" loading="lazy"></div>
     <div>
       <span class="note">hecha para mi teacher</span>
       <h3>Equith</h3>
-      <p>Gestiona la clase y reparte la participación de forma justa: nadie repite turno hasta que todos hayan participado. También lleva asistencia, arma equipos balanceados y muestra quién necesita más espacio para hablar.</p>
+      <p>Gestiona la clase y reparte la participación de forma justa: nadie repite turno hasta que todos hayan participado. Lleva asistencia, arma equipos balanceados, tiene temporizador y muestra estadísticas de quién necesita más espacio para hablar.</p>
       <a class="open" href="https://actually-random-roulette.vercel.app" target="_blank" rel="noopener">Abrir Equith</a>
     </div>
   </article>
 
-  <article class="feature">
-    <div class="shot"><img src="img/s-enie.jpg" alt="Buscador de Ñ-App" loading="lazy"></div>
+  <article class="feature flip">
+    <div class="browser"><div class="bar"><i></i><i></i><i></i><span>enie-app.vercel.app</span></div><img src="img/s-enie.jpg" alt="Buscador de Ñ-App" loading="lazy"></div>
     <div>
       <span class="note">para la Prof. Sadia, Día del Idioma</span>
       <h3>Ñ-App</h3>
-      <p>Explica con inteligencia artificial el significado, el origen y la forma correcta de escribir los anglicismos y la jerga que usamos a diario, con variantes por país y retos para aprender jugando.</p>
+      <p>Explica con inteligencia artificial el significado, el origen y la forma correcta de escribir los anglicismos y la jerga que usamos a diario, con un mapa de variantes por país y retos para aprender jugando.</p>
       <a class="open" href="https://enie-app.vercel.app" target="_blank" rel="noopener">Abrir Ñ-App</a>
     </div>
   </article>
 
   <div class="more">
-    <div><h3>ColSaPe+</h3><p>Plataforma todo en uno del Colegio San Agustín: vida académica, social y administrativa en un solo lugar. <em>para mi colegio</em></p></div>
-    <div><h3>SIRA Clara</h3><p>Rediseña el SIRA del colegio para que los estudiantes vean sus notas, pendientes y agenda con claridad, también desde el celular. <em>para mi colegio</em></p></div>
+    <div><h3>ColSaPe+</h3><p>Plataforma todo en uno del Colegio San Agustín: vida académica, social y administrativa en un solo lugar, con su propio kit de identidad visual. <em>para mi colegio</em></p></div>
+    <div><h3>SIRA Clara</h3><p>Rediseña el SIRA del colegio para que los estudiantes vean notas, pendientes y agenda con claridad, también desde el celular. <em>para mi colegio</em></p></div>
     <div><h3>NeuroTrack</h3><p>Analiza en video el comportamiento de roedores de laboratorio (distancia, velocidad, freezing) con visión por computadora. Alternativa libre a software comercial.</p></div>
     <div><h3>EvoLab</h3><p>Simulador de evolución y adaptación de organismos en entornos cambiantes: herencia y selección que se pueden ver.</p></div>
     <div><h3>Moleculair</h3><p>Simulador 3D de convección y movimiento molecular, con experimentos guiados en casa, en el salón y en la playa.</p></div>
     <div><h3>Chemondra</h3><p>Juego para dominar la fórmula esqueletal y la nomenclatura IUPAC. Valida valencias y explica cada error.</p></div>
     <div><h3>Nexavoz</h3><p>Mi entrenador de oratoria con IA: transcribe, cronometra y evalúa. Con él llegué a finalista regional. <em>lo usé yo mismo</em></p></div>
     <div><h3>InfraMap Panamá</h3><p>Mapa colaborativo del estado de escuelas, hospitales y parques, con reportes ciudadanos analizados por IA.</p></div>
+    <div><h3>Clara Académica</h3><p>Organizador para estudiantes: notas por trimestre, pendientes y cálculo del promedio que hace falta para llegar a la meta.</p></div>
+    <div><h3>Simulacro PCG</h3><p>Práctica para la prueba de admisión de la Universidad de Panamá, con banco de errores y simulacros.</p></div>
+    <div><h3>HOP Panamá</h3><p>Reúne concursos, becas, hackathons y voluntariados para jóvenes panameños y explica cómo participar.</p></div>
+    <div><h3>Método Vago</h3><p>Entrenador auditivo de trombón que detecta la afinación en tiempo real. Tecnología para practicar en la banda. <em>banda + código</em></p></div>
+  </div>
+</section>
+
+<section id="clases">
+  <h2>La tecnología en mis clases</h2>
+  <p class="intro">No solo programo fuera del colegio. Para mis materias hago laboratorios, clases interactivas y resúmenes que se pueden explorar.</p>
+  <div class="classes">
+    <figure class="wide"><div class="taped"><img src="img/m-optica.jpg" alt="ÓpticaLab, espejo cóncavo" loading="lazy"></div><figcaption><b>ÓpticaLab</b><span>Laboratorio interactivo de espejos y lentes: mueves el objeto y la imagen y los rayos se recalculan al instante. Tiene modo clase y retos. <em>Física 12.º</em></span></figcaption></figure>
+    <figure class="wide"><div class="taped"><img src="img/m-tangente2.jpg" alt="Clase interactiva de la función tangente" loading="lazy"></div><figcaption><b>La función tangente, paso a paso</b><span>Explicación interactiva con gráfica animada, asíntotas y modo presentación para exponer en clase. <em>Matemáticas</em></span></figcaption></figure>
+    <figure><div class="taped"><img src="img/m-quimica.jpg" alt="Resumen de funciones oxigenadas" loading="lazy"></div><figcaption><b>Funciones oxigenadas</b><span>Resumen visual de alcoholes, aldehídos y éteres con estructuras dibujadas. <em>Química</em></span></figcaption></figure>
+    <figure><div class="taped"><img src="img/m-filosofia.jpg" alt="Mapa conceptual de filosofía" loading="lazy"></div><figcaption><b>El ser humano</b><span>Mapa conceptual diseñado y programado: Hobbes, Rousseau, Kant y Erasmo. <em>Filosofía</em></span></figcaption></figure>
+    <figure><div class="taped"><img src="img/arduino.jpg" alt="Prototipo con Arduino" loading="lazy"></div><figcaption><b>Prototipo con Arduino</b><span>Sensor ultrasónico y pantalla LCD montados y programados en protoboard. <em>Robótica</em></span></figcaption></figure>
   </div>
 </section>
 
@@ -195,12 +309,15 @@ footer{padding:30px 0 50px;color:var(--soft);font-size:.9rem}
   <h2>Tecnología para negocios reales</h2>
   <p class="intro">He diseñado y vendido sitios web a negocios panameños, y estoy empezando TerLoop, una agencia de automatización e IA para pequeñas empresas.</p>
   <div class="clients">
-    <a href="https://experiencia-festiva-panama.vercel.app" target="_blank" rel="noopener"><img src="img/s-festiva.jpg" alt="" loading="lazy"><b>Experiencia Festiva Panamá</b><small>Reservas y pagos en línea</small></a>
-    <a href="https://hotel-la-pradera.vercel.app" target="_blank" rel="noopener"><img src="img/s-pradera.jpg" alt="" loading="lazy"><b>Hotel La Pradera</b><small>Penonomé, sitio y reservas</small></a>
-    <a href="https://ecomarketpanama.vercel.app" target="_blank" rel="noopener"><img src="img/s-ecomarket.jpg" alt="" loading="lazy"><b>EcoMarket</b><small>Plaza Penonomé, tienda en línea</small></a>
-    <a href="https://pintao-tours.vercel.app" target="_blank" rel="noopener"><img src="img/s-pintao.jpg" alt="" loading="lazy"><b>Pinta'o Tours</b><small>Turismo bilingüe en Panamá</small></a>
-    <a href="https://flow-la-musica.vercel.app" target="_blank" rel="noopener"><img src="img/s-flow.jpg" alt="" loading="lazy"><b>Flow La Música</b><small>Plataforma de medios</small></a>
-    <a href="https://terloop.com" target="_blank" rel="noopener"><img src="img/s-terloop.jpg" alt="" loading="lazy"><b>TerLoop</b><small>Mi agencia de automatización</small></a>
+    <a href="https://experiencia-festiva-panama.vercel.app" target="_blank" rel="noopener"><div class="browser"><div class="bar"><i></i><i></i><i></i></div><img src="img/s-festiva.jpg" alt="" loading="lazy"></div><b>Experiencia Festiva Panamá</b><small>Reservas y pagos en línea</small></a>
+    <a href="https://hotel-la-pradera.vercel.app" target="_blank" rel="noopener"><div class="browser"><div class="bar"><i></i><i></i><i></i></div><img src="img/s-pradera.jpg" alt="" loading="lazy"></div><b>Hotel La Pradera</b><small>Penonomé, sitio y reservas</small></a>
+    <a href="https://ecomarketpanama.vercel.app" target="_blank" rel="noopener"><div class="browser"><div class="bar"><i></i><i></i><i></i></div><img src="img/s-ecomarket.jpg" alt="" loading="lazy"></div><b>EcoMarket</b><small>Plaza Penonomé, tienda en línea</small></a>
+    <a href="https://pintao-tours.vercel.app" target="_blank" rel="noopener"><div class="browser"><div class="bar"><i></i><i></i><i></i></div><img src="img/s-pintao.jpg" alt="" loading="lazy"></div><b>Pinta'o Tours</b><small>Turismo bilingüe en Panamá</small></a>
+    <a href="https://flow-la-musica.vercel.app" target="_blank" rel="noopener"><div class="browser"><div class="bar"><i></i><i></i><i></i></div><img src="img/s-flow.jpg" alt="" loading="lazy"></div><b>Flow La Música</b><small>Plataforma de medios</small></a>
+    <a href="https://terloop.com" target="_blank" rel="noopener"><div class="browser"><div class="bar"><i></i><i></i><i></i></div><img src="img/s-terloop.jpg" alt="" loading="lazy"></div><b>TerLoop</b><small>Mi agencia de automatización</small></a>
+  </div>
+  <div class="repos" aria-label="Otros proyectos">
+    <span>Barbería Paris</span><span>Elevate Lab</span><span>Mimi's Dance</span><span>EdxenPOS</span><span>Edxen Edge</span><span>Panamá Explorer</span><span>Teams Edu MCP</span><span>y más de 30 repositorios</span>
   </div>
 </section>
 
@@ -220,24 +337,24 @@ footer{padding:30px 0 50px;color:var(--soft);font-size:.9rem}
   <h2>Certificados y medallas</h2>
   <p class="intro">Fotos de los documentos originales. Toca una para verla completa.</p>
   <div class="evid">
-    <a href="img/robocup.jpg" target="_blank"><img src="img/robocup.jpg" alt="Certificado RoboCupJunior Panamá 2024" loading="lazy"><span>RoboCupJunior Panamá 2024<small>Final nacional · SENACYT</small></span></a>
-    <a href="img/hackathon.jpg" target="_blank"><img src="img/hackathon.jpg" alt="Constancia Hackathon GENTec 2026" loading="lazy"><span>Hackathon GENTec 2026<small>Regional de Veraguas · SENACYT</small></span></a>
-    <a href="img/gentec.jpg" target="_blank"><img src="img/gentec.jpg" alt="Certificado Programa GENTec" loading="lazy"><span>Programa GENTec, Programación<small>8 semanas · SENACYT y Ciudad del Saber</small></span></a>
-    <a href="img/oratoria.jpg" target="_blank"><img src="img/oratoria.jpg" alt="Certificado Concurso Regional de Oratoria 2026" loading="lazy"><span>Oratoria Regional 2026, tema de IA<small>MEDUCA Coclé</small></span></a>
-    <a href="img/medalla-oratoria.jpg" target="_blank"><img src="img/medalla-oratoria.jpg" alt="Medalla de finalista regional" loading="lazy"><span>Medalla de Finalista Regional<small>Oratoria 2026</small></span></a>
-    <a href="img/medalla-canal.jpg" target="_blank"><img src="img/medalla-canal.jpg" alt="Medalla del Canal de Panamá" loading="lazy"><span>Reconocimiento del Canal de Panamá<small>Oratoria 2026</small></span></a>
-    <a href="img/utte.jpg" target="_blank"><img src="img/utte.jpg" alt="Certificado curso de Matemáticas" loading="lazy"><span>Matemáticas de Media<small>Universidad de Panamá · UTTE Coclé, 2025</small></span></a>
+    <a href="img/robocup.jpg" target="_blank"><div class="taped"><img src="img/robocup.jpg" alt="Certificado RoboCupJunior Panamá 2024" loading="lazy"></div><b>RoboCupJunior Panamá 2024</b><small>Final nacional, SENACYT</small></a>
+    <a href="img/hackathon.jpg" target="_blank"><div class="taped"><img src="img/hackathon.jpg" alt="Constancia Hackathon GENTec 2026" loading="lazy"></div><b>Hackathon GENTec 2026</b><small>Regional de Veraguas, SENACYT</small></a>
+    <a href="img/gentec.jpg" target="_blank"><div class="taped"><img src="img/gentec.jpg" alt="Certificado Programa GENTec" loading="lazy"></div><b>Programa GENTec</b><small>Programación, 8 semanas</small></a>
+    <a href="img/oratoria.jpg" target="_blank"><div class="taped"><img src="img/oratoria.jpg" alt="Certificado Concurso Regional de Oratoria 2026" loading="lazy"></div><b>Oratoria Regional 2026</b><small>Tema de IA, MEDUCA Coclé</small></a>
+    <a href="img/medalla-oratoria.jpg" target="_blank"><div class="taped"><img src="img/medalla-oratoria.jpg" alt="Medalla de finalista regional" loading="lazy"></div><b>Medalla de Finalista Regional</b><small>Oratoria 2026</small></a>
+    <a href="img/medalla-canal.jpg" target="_blank"><div class="taped"><img src="img/medalla-canal.jpg" alt="Medalla del Canal de Panamá" loading="lazy"></div><b>Canal de Panamá</b><small>Reconocimiento, Oratoria 2026</small></a>
+    <a href="img/utte.jpg" target="_blank"><div class="taped"><img src="img/utte.jpg" alt="Certificado curso de Matemáticas" loading="lazy"></div><b>Matemáticas de Media</b><small>Universidad de Panamá, 2025</small></a>
+    <a href="img/arduino.jpg" target="_blank"><div class="taped"><img src="img/arduino.jpg" alt="Prototipo con Arduino" loading="lazy"></div><b>Prototipo con Arduino</b><small>Robótica, 2026</small></a>
   </div>
 </section>
 
 <section class="close">
   <blockquote>La ciencia vale más cuando se pone al servicio de los demás.</blockquote>
   <p>Fray Gregorio Mendel era agustino, como nuestro colegio. Hizo ciencia con paciencia y método, y la dejó para quienes vinieron después. Eso intento hacer yo: aprender, construir y compartir. Aprobé el examen de admisión de la Universidad Tecnológica de Panamá y presenté el de Medicina en la Universidad de Panamá. Antes de irme quiero terminar ColSaPe+ para el colegio y enseñar a los más pequeños del Club de Robótica.</p>
-  <span class="note">— Edmar, Penonomé, noviembre de 2026</span>
+  <span class="sig">Edmar Quirós</span>
 </section>
 
-<footer>Edmar Jael Quirós Torrero · Colegio San Agustín de Penonomé · <a href="https://github.com/Edxen12">GitHub</a></footer>
 </div>
-</div>
+<footer><div class="wrap">Edmar Jael Quirós Torrero · Colegio San Agustín de Penonomé, 2026 · <a href="https://github.com/Edxen12">GitHub</a></div></footer>
 </body>
 </html>
